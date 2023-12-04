@@ -1,5 +1,5 @@
 var randomWords = require('random-words');
-const numberOfWords = 40; 
+const numberOfWords = 50; 
 const randomWordArray = Array.from({ length: numberOfWords }, () => randomWords());
 // console.log(randomWordArray);
 
@@ -90,7 +90,7 @@ cc.Class({
     },
 
     displayScore (score,correctWords){
-        this.score.getComponent(cc.Label).string = `Your Score: ${score.toFixed(2)}`;
+        this.score.getComponent(cc.Label).string = `Your Accuracy: ${score.toFixed(2)}%`;
         this.correctWord.getComponent(cc.Label).string = `Corrected Words (WPM): ${correctWords}`;
     },
 

@@ -156,7 +156,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 357.4305169337181
+      "z": 357.6684917629732
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -2424,16 +2424,13 @@
         "__id__": 60
       },
       {
-        "__id__": 62
-      },
-      {
         "__id__": 64
       },
       {
         "__id__": 73
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 3,
     "_components": [],
     "_prefab": null,
@@ -2762,12 +2759,16 @@
     "_parent": {
       "__id__": 53
     },
-    "_children": [],
+    "_children": [
+      {
+        "__id__": 61
+      }
+    ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 61
+        "__id__": 63
       }
     ],
     "_prefab": null,
@@ -2782,7 +2783,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 640,
-      "height": 227
+      "height": 250
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2814,50 +2815,18 @@
     "_id": "88qXuxD35FR5+/fLyRdYqy"
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 60
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "9a9fd302-ed29-40a5-8878-3e0b89ab90ed"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "a7g6l3nRhCn5JB93KaJkxO"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "TextDemo",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 53
+      "__id__": 60
     },
     "_children": [],
     "_active": true,
-    "_level": 4,
+    "_level": 5,
     "_components": [
       {
-        "__id__": 63
+        "__id__": 62
       }
     ],
     "_prefab": null,
@@ -2882,7 +2851,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 106.571,
+      "y": 6.571,
       "z": 0
     },
     "_scale": {
@@ -2908,7 +2877,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 62
+      "__id__": 61
     },
     "_enabled": true,
     "_materials": [
@@ -2932,6 +2901,38 @@
     "_N$overflow": 3,
     "_N$cacheMode": 0,
     "_id": "67KHR5rJRNUaxYs9MQs/Lf"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 60
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "9a9fd302-ed29-40a5-8878-3e0b89ab90ed"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": "a7g6l3nRhCn5JB93KaJkxO"
   },
   {
     "__type__": "cc.Node",
@@ -3622,7 +3623,7 @@
         "__id__": 89
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 3,
     "_components": [],
     "_prefab": null,
@@ -3852,7 +3853,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.94,
+      "width": 73.4,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3863,7 +3864,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 66.047,
+      "y": 60,
       "z": 0
     },
     "_scale": {
@@ -3900,7 +3901,7 @@
     "_useOriginalSize": false,
     "_string": "Label",
     "_N$string": "Label",
-    "_fontSize": 20,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -3940,7 +3941,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.94,
+      "width": 73.4,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3951,7 +3952,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -50,
       "z": 0
     },
     "_scale": {
@@ -3988,7 +3989,7 @@
     "_useOriginalSize": false,
     "_string": "Label",
     "_N$string": "Label",
-    "_fontSize": 20,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -4456,7 +4457,7 @@
       "__id__": 53
     },
     "textDemo": {
-      "__id__": 63
+      "__id__": 62
     },
     "userMessageInput": {
       "__id__": 72
