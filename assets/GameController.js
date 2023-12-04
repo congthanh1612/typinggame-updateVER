@@ -80,13 +80,18 @@ cc.Class({
         this.calculateScore();
 
     },
-
+        
     displayUserInfo() {
         const avatarOption = this.userInfo.avatarOption;
         const userName = this.userInfo.userName;
         this.userAvatar.getComponent(cc.Sprite).spriteFrame = this.listAvatar[avatarOption - 1];
         this.userName.getComponent(cc.Label).string = `${userName}`;
         this.textDemo.getComponent(cc.Label).string = randomWordArray.join(" ");
+    },
+
+    displayScore (score,correctWords){
+        this.score.getComponent(cc.Label).string = `Your Score: ${score.toFixed(2)}`;
+        this.correctWord.getComponent(cc.Label).string = `Corrected Words (WPM): ${correctWords}`;
     },
 
     update(dt) {
@@ -139,8 +144,4 @@ cc.Class({
         return correctCount;
     },
 
-    displayScore (score,correctWords){
-        this.score.getComponent(cc.Label).string = `Your Score: ${score.toFixed(2)}`;
-        this.correctWord.getComponent(cc.Label).string = `Corrected Words (WPM): ${correctWords}`;
-    }
 }); 
