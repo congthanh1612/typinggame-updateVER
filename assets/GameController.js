@@ -1,5 +1,5 @@
 var randomWords = require('random-words');
-const numberOfWords = 30; 
+const numberOfWords = 40; 
 const randomWordArray = Array.from({ length: numberOfWords }, () => randomWords());
 // console.log(randomWordArray);
 
@@ -17,7 +17,6 @@ cc.Class({
         userMessageInput: cc.EditBox,
         userAvatar: cc.Sprite,
         userName: cc.Label,
-        // countDown: cc.Node,
         circleNode: cc.Sprite,
         timeLabel: cc.Label,
         time: 60,
@@ -34,11 +33,11 @@ cc.Class({
 
     onLoad () {
         this.registerPopup.active = true;
-        this.avatarPopup.children[0].color = cc.Color.BLUE;
         this.mainGame.active = false;
         this.winPopup.active = false;
-        test
-        // this.winPopup.active = true;
+        this.avatarPopup.children[0].color = cc.Color.WHITE;
+        
+
 
         this.userMessageInput.node.on('text-changed', this.onTextChanged, this);
         this.circleNode.type = 3;
@@ -54,7 +53,7 @@ cc.Class({
     },
     onSelectAvatar(event, avatarOption) {
         this.avatarPopup.children.forEach((avatar, index) => {
-            avatar.color = index + 1 === Number(avatarOption) ? cc.Color.BLUE : cc.Color.WHITE;
+            avatar.color = index + 1 === Number(avatarOption) ? cc.Color.WHITE : cc.Color.GRAY;
         });
         this.avatarOption = avatarOption;
     },
@@ -117,16 +116,7 @@ cc.Class({
         const percentage = (correctWords / totalWords) * 100;
 
         const score = this.calculateScore(correctWords);
-        this.displayScore(score,correctWords);
-
-        // const score = this.calculateScore
-        // this.calculateScore();
-        // this.userScore = {
-        //         score: this.score,
-        //         countCorrectWords: this.correctWords
-        //     }
-
-        // this.displayScore();
+        this.displayScore(percentage,correctWords);
     },
 
     calculateScore() {
@@ -149,8 +139,8 @@ cc.Class({
         return correctCount;
     },
 
-    displayScore (){
-        this.score.getComponent(cc.Label).string = `Your Score: ${score}`;
-        this.correctWord.getComponent(cc.Label).string = `Corrected Words: ${countCorrectWords}`;
+    displayScore (score,correctWords){
+        this.score.getComponent(cc.Label).string = `Your Score: ${score.toFixed(2)}`;
+        this.correctWord.getComponent(cc.Label).string = `Corrected Words (WPM): ${correctWords}`;
     }
 }); 
