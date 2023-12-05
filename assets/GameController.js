@@ -1,7 +1,7 @@
 var randomWords = require('random-words');
 const numberOfWords = 50; 
 const randomWordArray = Array.from({ length: numberOfWords }, () => randomWords());
-
+const mapWords = {};
 cc.Class({
     extends: cc.Component,
     
@@ -11,7 +11,7 @@ cc.Class({
         avatarPopup: cc.Node,
 
         mainGame: cc.Node,
-        textDemo: cc.Label,
+        textDemo: cc.RichText,
         userMessageInput: cc.EditBox,
         userAvatar: cc.Sprite,
         userName: cc.Label,
@@ -26,6 +26,7 @@ cc.Class({
         winPopup: cc.Node,
         score: cc.Label,
         correctWord: cc.Label,
+        restartBtn: cc.Button
 
     },
 
@@ -35,7 +36,7 @@ cc.Class({
         this.winPopup.active = false;
         this.avatarPopup.children[0].color = cc.Color.WHITE;
         
-
+        this.restartBtn.node.on('click', this.onRestartBtnClick, this);
         this.userMessageInput.node.on('text-changed', this.onTextChanged, this);
         this.circleNode.type = 3;
         this.circleNode.fillType = 2;
@@ -43,18 +44,42 @@ cc.Class({
         this.circleNode.fillCenter.y = 0.5;
         this.circleNode.fillStart = 0.25;
         this.circleNode.fillRange = 1;
+        window.gameController = this;
+        
     }, 
 
     onTextChanged() {
         this.onCountDown = true;
-        // const inputText = this.userMessageInput.string;
-        // //  cc.log(this.userMessageInput.string)
-        // //  cc.log(inputText)
+        const inputText = this.userMessageInput.string;
 
-        // if (inputText.endsWith(' ')) {
-        //     this.userMessageInput.string = '';
-        // }
+        if (inputText.endsWith(' ')) {
+            this.userMessageInput.string = '';
+            this.userMessageInput.textLabel.string = '';
+            this.userMessageInput.focus();
+            this.mapWords[this.countWord] = inputText.trim();
+            this.countWord++;
+            this.updateDemoText();
+        }
 
+    },
+
+    updateDemoText() {
+        let richText = "";
+        for (let index = 0; index < randomWordArray.length; index++) {
+            const text = randomWordArray[index];
+            const userText = this.mapWords[index];
+            let string = "";
+            if (!userText) {
+                string = `<color=#160303>${text}</c> `
+            } else if (text === userText) {
+                string = `<color=#33FF00>${text}</c> `
+            } else {
+                string = `<color=#FF0000>${text}</c> `
+            }
+            richText += string;
+        }
+        this.textDemo.getComponent(cc.RichText).string = richText;  
+        
     },
 
     onSelectAvatar(event, avatarOption) {
@@ -79,12 +104,12 @@ cc.Class({
     },
 
     startGame() {
+        this.countWord = 0;
+        this.mapWords = {};
         this.registerPopup.active = false;
         this.mainGame.active = true;
         this.winPopup.active = false;
         this.displayUserInfo();
-        this.calculateScore();
-
     },
         
     displayUserInfo() {
@@ -92,12 +117,13 @@ cc.Class({
         const userName = this.userInfo.userName;
         this.userAvatar.getComponent(cc.Sprite).spriteFrame = this.listAvatar[avatarOption - 1];
         this.userName.getComponent(cc.Label).string = `${userName}`;
-        this.textDemo.getComponent(cc.Label).string = randomWordArray.join(" ");
+        // this.textDemo.getComponent(cc.Label).string = randomWordArray.join(" ");
+        this.updateDemoText();
     },
 
-    displayScore (score,correctWords){
-        this.score.getComponent(cc.Label).string = `Your Accuracy: ${score.toFixed(2)}%`;
-        this.correctWord.getComponent(cc.Label).string = `Corrected Words (WPM): ${correctWords}`;
+    displayScore (correctWords){
+        this.score.getComponent(cc.Label).string = `Your Accuracy: ${(correctWords / numberOfWords).toFixed(2) * 100}%`;
+        this.correctWord.getComponent(cc.Label).string = `Corrected Words: ${correctWords}`;
     },
 
     update(dt) {
@@ -123,29 +149,24 @@ cc.Class({
         this.winPopup.active = true;
         
         const correctWords = this.countCorrectWords();
-        const totalWords = randomWordArray.length;
-        const percentage = (correctWords / totalWords) * 100;
-
-        const score = this.calculateScore(correctWords);
-        this.displayScore(percentage,correctWords);
-    },
-
-    calculateScore() {
-        const correctWords = this.countCorrectWords();
-        const totalWords = randomWordArray.length;
-        const percentage = (correctWords / totalWords) * 100;
+        this.displayScore(correctWords);
     },
 
     countCorrectWords() {
-        const typedWords = this.userMessageInput.string.trim().split(/\s+/);        
-        const demoWords = this.textDemo.string.trim().split(/\s+/);
+        const typedWords = this.mapWords;
+        const demoWords = randomWordArray;
         let correctCount = 0;
-
-        for (let i = 0; i < typedWords.length; i++) {
-            if (typedWords[i] === demoWords[i]) {
+    
+        for (let index in typedWords) {
+            if (typedWords.hasOwnProperty(index) && demoWords[index] === typedWords[index]) {
                 correctCount++;
             }
         }
+    
         return correctCount;
+    },
+
+    onRestartBtnClick() {
+        this.startGame();
     },
 }); 
