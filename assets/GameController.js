@@ -1,8 +1,6 @@
 var randomWords = require('random-words');
 const numberOfWords = 50; 
 const randomWordArray = Array.from({ length: numberOfWords }, () => randomWords());
-// console.log(randomWordArray);
-
 
 cc.Class({
     extends: cc.Component,
@@ -38,7 +36,6 @@ cc.Class({
         this.avatarPopup.children[0].color = cc.Color.WHITE;
         
 
-
         this.userMessageInput.node.on('text-changed', this.onTextChanged, this);
         this.circleNode.type = 3;
         this.circleNode.fillType = 2;
@@ -50,7 +47,16 @@ cc.Class({
 
     onTextChanged() {
         this.onCountDown = true;
+        // const inputText = this.userMessageInput.string;
+        // //  cc.log(this.userMessageInput.string)
+        // //  cc.log(inputText)
+
+        // if (inputText.endsWith(' ')) {
+        //     this.userMessageInput.string = '';
+        // }
+
     },
+
     onSelectAvatar(event, avatarOption) {
         this.avatarPopup.children.forEach((avatar, index) => {
             avatar.color = index + 1 === Number(avatarOption) ? cc.Color.WHITE : cc.Color.GRAY;
@@ -133,7 +139,6 @@ cc.Class({
     countCorrectWords() {
         const typedWords = this.userMessageInput.string.trim().split(/\s+/);        
         const demoWords = this.textDemo.string.trim().split(/\s+/);
-
         let correctCount = 0;
 
         for (let i = 0; i < typedWords.length; i++) {
@@ -143,5 +148,4 @@ cc.Class({
         }
         return correctCount;
     },
-
 }); 
