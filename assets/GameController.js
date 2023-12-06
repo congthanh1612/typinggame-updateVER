@@ -1,5 +1,5 @@
 var randomWords = require('random-words');
-const numberOfWords = 50; 
+const numberOfWords = 40; 
 const randomWordArray = Array.from({ length: numberOfWords }, () => randomWords());
 const mapWords = {};
 cc.Class({
