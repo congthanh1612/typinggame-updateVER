@@ -26,7 +26,6 @@ cc.Class({
         winPopup: cc.Node,
         score: cc.Label,
         correctWord: cc.Label,
-        restartBtn: cc.Button
 
     },
 
@@ -36,7 +35,7 @@ cc.Class({
         this.winPopup.active = false;
         this.avatarPopup.children[0].color = cc.Color.WHITE;
         
-        this.restartBtn.node.on('click', this.onRestartBtnClick, this);
+        // this.restartBtn.node.on('click', this.onRestartBtnClick, this);
         this.userMessageInput.node.on('text-changed', this.onTextChanged, this);
         this.circleNode.type = 3;
         this.circleNode.fillType = 2;
@@ -164,9 +163,5 @@ cc.Class({
         }
     
         return correctCount;
-    },
-
-    onRestartBtnClick() {
-        this.startGame();
     },
 }); 
